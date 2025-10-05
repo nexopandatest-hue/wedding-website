@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getGuestByCode, getDisplayName } from './guestData';
-import { saveRSVP, checkExistingRSVP, RSVPData } from './rsvpService';
+import { getGuestByCode } from './guestData';
+import { saveRSVP, checkExistingRSVP, type RSVPData } from './rsvpService';
 
 interface RSVPTranslations {
   en: {
@@ -90,7 +90,7 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [hasRSVPed, setHasRSVPed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [existingRSVP, setExistingRSVP] = useState<RSVPData | null>(null);
+  const [, setExistingRSVP] = useState<RSVPData | null>(null);
   const [formData, setFormData] = useState({
     attending: '',
     bringingPlusOne: false,
@@ -293,8 +293,8 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
         
         {question.type === 'textarea' && (
           <textarea
-            value={formData[question.id as keyof typeof formData]}
-            onChange={(e) => handleInputChange(question.id, e.target.value)}
+                  value={formData[question.id as keyof typeof formData] as string}
+                  onChange={(e) => handleInputChange(question.id, e.target.value)}
             placeholder={question.placeholder}
             className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500 text-black font-sans"
             rows={4}
@@ -304,8 +304,8 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
         {question.type === 'email' && (
           <input
             type="email"
-            value={formData[question.id as keyof typeof formData]}
-            onChange={(e) => handleInputChange(question.id, e.target.value)}
+                  value={formData[question.id as keyof typeof formData] as string}
+                  onChange={(e) => handleInputChange(question.id, e.target.value)}
             placeholder={question.placeholder}
             className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500 text-black font-sans"
           />
