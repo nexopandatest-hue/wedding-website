@@ -292,21 +292,21 @@ function DateLocationSection({ language }: { language: 'en' | 'es' }) {
   const t = translations[language];
   
   return (
-    <div className="flex items-center justify-center space-x-8 my-16">
+    <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8 my-8 md:my-16">
       {/* Date */}
-      <div className="text-right">
-        <div className="text-6xl font-serif text-black leading-none">
+      <div className="text-center md:text-right">
+        <div className="text-4xl sm:text-5xl md:text-6xl font-serif text-black leading-none">
           <div>{t.june20}</div>
           <div>{t.year2026}</div>
         </div>
       </div>
       
       {/* Vertical separator */}
-      <div className="w-px h-20 bg-amber-900"></div>
+      <div className="w-20 h-px md:w-px md:h-20 bg-amber-900"></div>
       
       {/* Location */}
-      <div className="text-left">
-        <div className="text-6xl font-serif text-black leading-none">
+      <div className="text-center md:text-left">
+        <div className="text-4xl sm:text-5xl md:text-6xl font-serif text-black leading-none">
           <div>{t.valencia}</div>
           <div>{t.spain}</div>
         </div>
@@ -495,22 +495,22 @@ function CodeEntryPage({ onCodeSubmit, language, setLanguage }: {
         </button>
       </div>
 
-      <div className="max-w-lg w-full relative z-30 mr-8">
+      <div className="max-w-lg w-full relative z-30 mx-4 md:mr-8">
         {/* S&G Monogram */}
-        <div className="text-center mb-12">
-          <div className="text-6xl md:text-8xl font-serif text-white mb-4 drop-shadow-lg" style={{ fontFamily: 'serif' }}>
+        <div className="text-center mb-8 md:mb-12">
+          <div className="text-5xl sm:text-6xl md:text-8xl font-serif text-white mb-4 drop-shadow-lg" style={{ fontFamily: 'serif' }}>
             <span className="italic">S</span>
-            <span className="text-4xl md:text-6xl mx-2">❤</span>
+            <span className="text-3xl sm:text-4xl md:text-6xl mx-2">❤</span>
             <span className="italic">G</span>
           </div>
         </div>
 
         {/* Code Input Section */}
-        <div className="bg-white/80 backdrop-blur-sm border border-white/30 p-8 shadow-xl rounded-2xl">
+        <div className="bg-white/80 backdrop-blur-sm border border-white/30 p-4 md:p-8 shadow-xl rounded-2xl">
           <div className="text-center mb-6">
             <div className="mb-6">
               <div className="inline-block border-t border-b border-gray-300 py-2 px-6 mb-3">
-                <h1 className="text-2xl font-serif text-gray-800 tracking-wide">
+                <h1 className="text-xl md:text-2xl font-serif text-gray-800 tracking-wide">
                   {t.ourWedding}
                 </h1>
               </div>
@@ -530,7 +530,7 @@ function CodeEntryPage({ onCodeSubmit, language, setLanguage }: {
 
           <form onSubmit={handleSubmit}>
             {/* 6 Square Input Boxes */}
-            <div className="flex justify-center space-x-3 mb-6">
+            <div className="flex justify-center space-x-2 md:space-x-3 mb-6">
               {[0, 1, 2, 3, 4, 5].map((index) => (
                 <input
                   key={index}
@@ -550,7 +550,7 @@ function CodeEntryPage({ onCodeSubmit, language, setLanguage }: {
                       nextInput?.focus();
                     }
                   }}
-                  className="w-12 h-12 border border-gray-300 text-center text-xl font-light focus:border-gray-500 focus:outline-none"
+                  className="w-10 h-10 md:w-12 md:h-12 border border-gray-300 text-center text-lg md:text-xl font-light focus:border-gray-500 focus:outline-none"
                   style={{ fontFamily: 'serif' }}
                 />
               ))}
