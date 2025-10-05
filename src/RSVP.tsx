@@ -293,8 +293,8 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
         
         {question.type === 'textarea' && (
           <textarea
-                  value={formData[question.id as keyof typeof formData] as string}
-                  onChange={(e) => handleInputChange(question.id, e.target.value)}
+            value={formData[question.id as keyof typeof formData] as string}
+            onChange={(e) => handleInputChange(question.id, e.target.value)}
             placeholder={question.placeholder}
             className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500 text-black font-sans"
             rows={4}
@@ -304,8 +304,8 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
         {question.type === 'email' && (
           <input
             type="email"
-                  value={formData[question.id as keyof typeof formData] as string}
-                  onChange={(e) => handleInputChange(question.id, e.target.value)}
+            value={formData[question.id as keyof typeof formData] as string}
+            onChange={(e) => handleInputChange(question.id, e.target.value)}
             placeholder={question.placeholder}
             className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500 text-black font-sans"
           />
