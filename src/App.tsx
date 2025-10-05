@@ -258,7 +258,7 @@ function Navigation({ language, currentPage, onPageChange }: {
   const t = translations[language];
   
   return (
-    <nav className="flex justify-center space-x-8 text-black font-sans font-medium">
+    <nav className="flex flex-wrap justify-center gap-4 md:gap-8 text-black font-sans font-medium text-sm sm:text-base">
       <button 
         onClick={() => onPageChange('home')}
         className={`transition-all ${currentPage === 'home' ? 'border-b border-black pb-1' : 'hover:border-b hover:border-black hover:pb-1'}`}
@@ -319,10 +319,10 @@ function DateLocationSection({ language }: { language: 'en' | 'es' }) {
 // Where page component
 function WherePage({ language }: { language: 'en' | 'es' }) {
   return (
-    <div className="max-w-4xl mx-auto px-8 py-2">
-      <div className="grid md:grid-cols-2 gap-6">
+    <div className="max-w-4xl mx-auto px-4 md:px-8 py-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Church Location */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-lg p-8 shadow-lg">
+        <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 md:p-8 shadow-lg">
           <div className="mb-6">
             <img 
               src="/photos/Church.jpg" 
@@ -367,7 +367,7 @@ function WherePage({ language }: { language: 'en' | 'es' }) {
         </div>
 
         {/* Finca Location */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-lg p-8 shadow-lg">
+        <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 md:p-8 shadow-lg">
           <div className="mb-6">
             <img 
               src="/photos/Finca.jpeg" 
@@ -688,14 +688,14 @@ function WeddingHomePage({ code, language, setLanguage, currentPage, onPageChang
       </div>
 
       {/* FIXED HEADER - Always stays in the same position */}
-      <div className="absolute top-0 left-0 w-full flex flex-col items-center justify-center px-8 z-20" style={{height: '70vh'}}>
-        <div className="max-w-4xl w-full text-center bg-white/80 backdrop-blur-sm border border-white/30 p-8 shadow-xl rounded-2xl">
+      <div className="absolute top-0 left-0 w-full flex flex-col items-center justify-center px-4 md:px-8 z-20" style={{height: '70vh'}}>
+        <div className="max-w-4xl w-full text-center bg-white/80 backdrop-blur-sm border border-white/30 p-4 md:p-8 shadow-xl rounded-2xl">
           {/* Top Section */}
           <div className="mb-12">
             {/* Couple Names */}
             <div className="mb-6">
               <div className="inline-block border-t border-b border-gray-300 py-2 px-6 mb-3">
-                <h1 className="text-6xl md:text-7xl font-serif text-black tracking-wide">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-black tracking-wide">
                   S ❤ G
                 </h1>
               </div>
@@ -705,7 +705,7 @@ function WeddingHomePage({ code, language, setLanguage, currentPage, onPageChang
             <div className="mb-4">
               <div className="flex items-center justify-center space-x-3 text-gray-600 mb-3">
                 <div className="w-6 h-px bg-gray-300"></div>
-                <span className="text-xl font-sans font-light tracking-wider text-black uppercase">{t.june2026}</span>
+                <span className="text-lg sm:text-xl font-sans font-light tracking-wider text-black uppercase">{t.june2026}</span>
                 <div className="w-6 h-px bg-gray-300"></div>
               </div>
             </div>
@@ -715,12 +715,12 @@ function WeddingHomePage({ code, language, setLanguage, currentPage, onPageChang
             
             {/* Personalized Invitation */}
             <div className="mt-8">
-              <div className="text-2xl font-serif text-black mb-2" style={{ fontFamily: 'serif' }}>
+              <div className="text-lg sm:text-xl md:text-2xl font-serif text-black mb-2" style={{ fontFamily: 'serif' }}>
                 <span dangerouslySetInnerHTML={{
                   __html: getDisplayName(getGuestByCode(code) || { code, name1: 'Guest' }).replace(/ & /g, ' <span style="font-family: serif; font-style: italic; font-weight: normal;">&</span> ')
                 }} />
               </div>
-              <div className="text-lg font-sans font-light text-black">
+              <div className="text-sm sm:text-base md:text-lg font-sans font-light text-black">
                 {t.youAreInvited}
               </div>
             </div>
@@ -736,8 +736,8 @@ function WeddingHomePage({ code, language, setLanguage, currentPage, onPageChang
       {/* CONTENT AREA - Positioned below the fixed header */}
       <div className="absolute z-20" style={{top: '65vh', left: '0', right: '0'}}>
         {currentPage === 'home' ? (
-          <div className="max-w-4xl mx-auto px-8 py-2">
-            <div className="bg-white/80 backdrop-blur-sm border border-white/30 p-8 shadow-xl rounded-2xl">
+          <div className="max-w-4xl mx-auto px-4 md:px-8 py-2">
+            <div className="bg-white/80 backdrop-blur-sm border border-white/30 p-4 md:p-8 shadow-xl rounded-2xl">
               {/* Date & Location Section */}
               <DateLocationSection language={language} />
             </div>
@@ -745,14 +745,14 @@ function WeddingHomePage({ code, language, setLanguage, currentPage, onPageChang
         ) : currentPage === 'where' ? (
           <WherePage language={language} />
         ) : currentPage === 'rsvp' ? (
-          <div className="max-w-4xl mx-auto px-8 py-2">
-            <div className="bg-white/80 backdrop-blur-sm border border-white/30 p-8 shadow-xl rounded-2xl">
+          <div className="max-w-4xl mx-auto px-4 md:px-8 py-2">
+            <div className="bg-white/80 backdrop-blur-sm border border-white/30 p-4 md:p-8 shadow-xl rounded-2xl">
               <RSVP language={language} guestCode={code} />
             </div>
           </div>
         ) : (
-          <div className="max-w-4xl mx-auto px-8 py-2">
-            <div className="bg-white/80 backdrop-blur-sm border border-white/30 p-8 shadow-xl rounded-2xl">
+          <div className="max-w-4xl mx-auto px-4 md:px-8 py-2">
+            <div className="bg-white/80 backdrop-blur-sm border border-white/30 p-4 md:p-8 shadow-xl rounded-2xl">
               {/* Title */}
               <div className="text-center mb-12">
                 <div className="inline-block border-t border-b border-gray-300 py-2 px-6 mb-3">

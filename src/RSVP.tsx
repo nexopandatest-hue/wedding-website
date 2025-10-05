@@ -216,8 +216,8 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
   };
 
   const renderQuestion = (question: any) => (
-    <div className="mb-8">
-      <h3 className="text-2xl font-serif text-black mb-6 text-center">
+    <div className="mb-6 md:mb-8">
+      <h3 className="text-xl md:text-2xl font-serif text-black mb-4 md:mb-6 text-center">
         {question.title}
       </h3>
 
@@ -235,7 +235,7 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
                 onChange={e => handleInputChange(question.id, e.target.value)}
                 className="mr-4 w-5 h-5 text-black"
               />
-              <span className="text-lg font-sans text-black">{option.label}</span>
+               <span className="text-base md:text-lg font-sans text-black">{option.label}</span>
             </label>
           ))}
           {question.note && (
@@ -259,16 +259,16 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
                     }
                     className="mr-3 w-5 h-5 text-black"
                   />
-                  <span className="text-lg font-sans text-black">
-                    {language === "en"
-                      ? "I'll bring a plus one"
-                      : "Traeré un acompañante"}
-                  </span>
+                    <span className="text-base md:text-lg font-sans text-black">
+                      {language === "en"
+                        ? "I'll bring a plus one"
+                        : "Traeré un acompañante"}
+                    </span>
                 </label>
 
                 {formData.bringingPlusOne && (
                   <div>
-                    <label className="block text-lg font-sans text-black mb-2">
+                    <label className="block text-base md:text-lg font-sans text-black mb-2">
                       {language === "en"
                         ? "Plus one name:"
                         : "Nombre del acompañante:"}
@@ -284,7 +284,7 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
                           ? "Enter plus one name"
                           : "Ingresa el nombre del acompañante"
                       }
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500 text-black font-sans"
+                        className="w-full p-2 md:p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500 text-black font-sans text-sm md:text-base"
                     />
                   </div>
                 )}
@@ -298,7 +298,7 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
           value={formData[question.id as keyof FormDataType] as string}
           onChange={e => handleInputChange(question.id, e.target.value)}
           placeholder={question.placeholder}
-          className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500 text-black font-sans"
+           className="w-full p-3 md:p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500 text-black font-sans text-sm md:text-base"
           rows={4}
         />
       )}
@@ -309,7 +309,7 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
           value={formData[question.id as keyof FormDataType] as string}
           onChange={e => handleInputChange(question.id, e.target.value)}
           placeholder={question.placeholder}
-          className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500 text-black font-sans"
+           className="w-full p-3 md:p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-500 text-black font-sans text-sm md:text-base"
         />
       )}
     </div>
@@ -363,8 +363,8 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <div className="mb-8">
+    <div className="w-full max-w-2xl mx-auto px-4">
+      <div className="mb-6 md:mb-8">
         <div className="flex justify-between text-sm font-sans text-gray-700 mb-2">
           <span>
             {currentStep + 1} of {questions.length}
@@ -383,13 +383,13 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
 
       {renderQuestion(questions[currentStep])}
 
-      <div className="flex justify-between mt-8">
+        <div className="flex flex-col sm:flex-row justify-between gap-4 mt-6 md:mt-8">
         <button
           onClick={handlePrevious}
           disabled={currentStep === 0}
-          className={`px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-sans ${
-            currentStep === 0 ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-50"
-          }`}
+            className={`px-4 md:px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-sans text-sm md:text-base ${
+              currentStep === 0 ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-50"
+            }`}
         >
           {language === "en" ? "Previous" : "Anterior"}
         </button>
@@ -398,11 +398,11 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
           <button
             onClick={handleSubmit}
             disabled={isLoading}
-            className={`px-8 py-3 rounded-lg font-sans transition-colors ${
-              isLoading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-gray-800 hover:bg-gray-900"
-            } text-white`}
+              className={`px-6 md:px-8 py-2 md:py-3 rounded-lg font-sans transition-colors text-sm md:text-base ${
+                isLoading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-gray-800 hover:bg-gray-900"
+              } text-white`}
           >
             {isLoading
               ? language === "en"
@@ -413,7 +413,7 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
         ) : (
           <button
             onClick={handleNext}
-            className="px-6 py-2 bg-gray-800 text-white rounded-lg font-sans hover:bg-gray-900 transition-colors"
+            className="px-4 md:px-6 py-2 bg-gray-800 text-white rounded-lg font-sans hover:bg-gray-900 transition-colors text-sm md:text-base"
           >
             {language === "en" ? "Next" : "Siguiente"}
           </button>
