@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getGuestByCode } from './guestData';
-import { saveRSVP, checkExistingRSVP, type RSVPData } from './rsvpService';
+// import { saveRSVP, checkExistingRSVP, type RSVPData } from './rsvpService';
 
 interface RSVPTranslations {
   en: {
@@ -90,7 +90,7 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [hasRSVPed, setHasRSVPed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [, setExistingRSVP] = useState<RSVPData | null>(null);
+  // const [, setExistingRSVP] = useState<RSVPData | null>(null);
   const [formData, setFormData] = useState({
     attending: '',
     bringingPlusOne: false,
@@ -101,35 +101,35 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
     message: ''
   });
 
-  // Check Firebase for existing RSVP
-  useEffect(() => {
-    const checkRSVP = async () => {
-      if (guestCode) {
-        try {
-          const existing = await checkExistingRSVP(guestCode);
-          if (existing) {
-            setExistingRSVP(existing);
-            setHasRSVPed(true);
-            setIsSubmitted(true);
-            // Pre-fill form with existing data
-            setFormData({
-              attending: existing.attending,
-              bringingPlusOne: existing.bringingPlusOne || false,
-              plusOneName: existing.plusOneName || '',
-              allergies: existing.allergies || '',
-              transportation: existing.transportation || '',
-              email: existing.email || '',
-              message: existing.message || ''
-            });
-          }
-        } catch (error) {
-          console.error('Error checking existing RSVP:', error);
-        }
-      }
-    };
-    
-    checkRSVP();
-  }, [guestCode]);
+  // Check Firebase for existing RSVP - temporarily disabled
+  // useEffect(() => {
+  //   const checkRSVP = async () => {
+  //     if (guestCode) {
+  //       try {
+  //         const existing = await checkExistingRSVP(guestCode);
+  //         if (existing) {
+  //           setExistingRSVP(existing);
+  //           setHasRSVPed(true);
+  //           setIsSubmitted(true);
+  //           // Pre-fill form with existing data
+  //           setFormData({
+  //             attending: existing.attending,
+  //             bringingPlusOne: existing.bringingPlusOne || false,
+  //             plusOneName: existing.plusOneName || '',
+  //             allergies: existing.allergies || '',
+  //             transportation: existing.transportation || '',
+  //             email: existing.email || '',
+  //             message: existing.message || ''
+  //           });
+  //         }
+  //       } catch (error) {
+  //         console.error('Error checking existing RSVP:', error);
+  //       }
+  //     }
+  //   };
+  //   
+  //   checkRSVP();
+  // }, [guestCode]);
 
   const t = rsvpTranslations[language];
 
@@ -204,30 +204,13 @@ export default function RSVP({ language, guestCode }: RSVPProps) {
   };
 
   const handleSubmit = async () => {
-    if (!guestCode) return;
-    
+    // Temporarily disabled Firebase - just show success message
     setIsLoading(true);
-    try {
-      const rsvpData = {
-        guestCode,
-        attending: formData.attending as 'yes' | 'no',
-        bringingPlusOne: formData.bringingPlusOne,
-        plusOneName: formData.plusOneName,
-        allergies: formData.allergies,
-        transportation: formData.transportation as 'car' | 'bus',
-        email: formData.email,
-        message: formData.message
-      };
-      
-      await saveRSVP(rsvpData);
+    setTimeout(() => {
       setIsSubmitted(true);
       setHasRSVPed(true);
-    } catch (error) {
-      console.error('Error saving RSVP:', error);
-      // You might want to show an error message to the user here
-    } finally {
       setIsLoading(false);
-    }
+    }, 1000);
   };
 
   const renderQuestion = (question: any) => {
